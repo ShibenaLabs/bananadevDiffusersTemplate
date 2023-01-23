@@ -1,19 +1,6 @@
+This is a generic template for diffusers pipeline. You will have to change the app.py and download.py and add your tokens to these files as well in addition to the docker file.
 
-# 🍌 Banana Serverless Stable Diffusion Inpainting Template
-
-This repo gives a basic framework for serving Stable Diffusion Inpainting in production using simple HTTP servers.
-
-If you want to generalize this to deploy anything on Banana, [see the guide here](https://www.notion.so/banana-dev/How-To-Serve-Anything-On-Banana-125a65fc4d30496ba1408de1d64d052a).
-
-
-### Note: You need to add your HuggingFace token to `app.py` and `download.py` and dockerFile to be able to get model weights from HF hub
-
-
-## Move to prod:
-
-At this point, you have a functioning http server for your ML model. You can use it as is, or package it up with our provided `Dockerfile` and deploy it to your favorite container hosting provider!
-
-If Banana is your favorite GPU hosting provider, read on!
+I have added     model.enable_attention_slicing(). If you don't want it remove it from the app.py file
 
 # 🍌
 
