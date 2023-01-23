@@ -8,6 +8,7 @@ import os
 import PIL
 from diffusers import AutoencoderKL, UNet2DConditionModel, StableDiffusionPipeline, StableDiffusionImg2ImgPipeline, StableDiffusionInpaintPipeline
 from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
+# from diffusers import [ADD YOUR PIPELINE and SCHEDULERS HERE]
 from PIL import Image
 import os
 import random
@@ -24,6 +25,8 @@ scheduler = DPMSolverMultistepScheduler(
     lower_order_final=True,
 )
 
+# Add your SCHEDULERS CONFIG HERE, similar to the one written above. Check HF repo for configs which are accepted
+
 # Init is ran on server startup
 # Load your model to GPU as a global variable here using the variable name "model"
 def init():
@@ -31,6 +34,7 @@ def init():
     HF_AUTH_TOKEN = "ADD YOUR AUTH TOKEN HERE"
     
     model = StableDiffusionInpaintPipeline.from_pretrained("runwayml/stable-diffusion-inpainting", revision="fp16", torch_dtype=torch.float16,use_auth_token=HF_AUTH_TOKEN).to("cuda")
+#     ADD YOUR PIPELINE AND HF MODELNAME HERE. 
     model.enable_attention_slicing()
 # Inference is ran for every server call
 # Reference your preloaded global model variable here.
@@ -53,6 +57,7 @@ def inference(model_inputs:dict) -> dict:
     width = model_inputs.get("width",512)    
     steps = model_inputs.get("steps",50)
     seed = model_inputs.get("seed",0)
+#     IF YOU HAVE MORE INPUTS, FOLLOW THE SAME model_inputs.get("variable_name","default_value")
 
     init_image_encoded = init_image_base64.encode('utf-8')
     init_image_bytes = BytesIO(base64.b64decode(init_image_encoded))
@@ -65,7 +70,9 @@ def inference(model_inputs:dict) -> dict:
 
     # Run the model
     with autocast("cuda"):
+#         CHANGE THE VARIABLES HERE
         image = model(prompt=prompt,image=init_image,mask_image=mask_image,height=height,width=width,num_inference_steps=steps,guidance_scale=guidance_scale,generator=generator).images[0]
+        
     
     buffered = BytesIO()
     image.save(buffered,format="PNG")
