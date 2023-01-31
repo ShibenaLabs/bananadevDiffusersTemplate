@@ -12,6 +12,10 @@ from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
 from PIL import Image
 import os
 import random
+import gradio as gr
+
+gr.Interface.load("models/andite/anything-v4.0").launch()
+
 
 scheduler = DPMSolverMultistepScheduler(
     beta_start=0.00085,
