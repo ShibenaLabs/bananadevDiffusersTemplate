@@ -12,7 +12,7 @@ def download_model():
     # do a dry run of loading the huggingface model, which will download weights at build time
     #Set auth token which is required to download stable diffusion model weights
 #     HF_AUTH_TOKEN = os.getenv("HF_AUTH_TOKEN")
-    HF_AUTH_TOKEN = "ADD YOUR AUTH TOKEN HERE"
+    HF_AUTH_TOKEN = "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"
 #     CHANGE THE PIPELINE AND HF MODEL NAME BELOW.
     model = StableDiffusionInpaintPipeline.from_pretrained(
         "runwayml/stable-diffusion-inpainting",
