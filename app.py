@@ -31,7 +31,7 @@ scheduler = DPMSolverMultistepScheduler(
 # Load your model to GPU as a global variable here using the variable name "model"
 def init():
     global model
-    HF_AUTH_TOKEN = "ADD YOUR AUTH TOKEN HERE"
+    HF_AUTH_TOKEN = "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"
     
     model = StableDiffusionInpaintPipeline.from_pretrained("runwayml/stable-diffusion-inpainting", revision="fp16", torch_dtype=torch.float16,use_auth_token=HF_AUTH_TOKEN).to("cuda")
 #     ADD YOUR PIPELINE AND HF MODELNAME HERE. 
